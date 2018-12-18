@@ -15,6 +15,8 @@ Page({
    */
   onLoad: function (options) {
     this.onGetOpenid()
+
+    var dd= 5
   },
 
   onGetOpenid: function () {
