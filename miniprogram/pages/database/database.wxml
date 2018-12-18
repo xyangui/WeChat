@@ -1,15 +1,35 @@
 <view>
+<!-- 增加 -->
   <input style='margin-top: 40rpx;' placeholder="请输入姓名" value="{{name}}" bindinput="bindKeyInputName" />
   <input style='margin-top: 40rpx;' placeholder="请输入年龄" value="{{age}}" bindinput="bindKeyInputAge" />
-  <button style='margin-top: 40rpx;' bindtap='insertData'>插入数据</button>
+  <button style='margin-top: 40rpx;' bindtap='insertData'>
+    插入数据
+  </button>
+
+<!-- 查询 -->
   <input style='margin-top: 40rpx;' placeholder="请输入记录ID" value="{{recordId}}" bindinput="bindKeyInputId" />
-
-  <button style='margin-top: 40rpx;' bindtap='queryData'>查询数据</button>
-
+  <button style='margin-top: 40rpx;' bindtap='queryData'>
+    查询数据
+  </button>
   <text style='margin-top: 40rpx;'>
      姓名：{{nameResult}} 
   </text>
   <text style='margin-top: 80rpx;'>
      年龄：{{ageResult}} 
   </text>
+
+<!-- 修改 -->
+  <input style='margin-top: 40rpx;' placeholder="请输入记录ID" value="{{updateRecordId}}" bindinput="bindKeyUpdateId" />
+  <button style='margin-top: 40rpx;' bindtap='updateData'>
+    修改数据
+  </button>
+  <input style='margin-top: 40rpx;' placeholder="请输入姓名" value="{{updateName}}" bindinput="bindKeyUpdateName" />
+  <input style='margin-top: 40rpx;' placeholder="请输入年龄" value="{{updateAge}}" bindinput="bindKeyUpdateAge" />
+
+<!-- 删除 -->
+  <input style='margin-top: 40rpx;' placeholder="请输入记录ID" value="{{removeRecordId}}" bindinput="bindKeyRemoveId" />
+  <button style='margin-top: 40rpx;' bindtap='removeData'>
+    删除数据
+  </button>
+
 </view>
