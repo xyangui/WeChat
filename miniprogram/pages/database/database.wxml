@@ -1,33 +1,35 @@
 <view>
+
 <!-- 增加 -->
-  <input style='margin-top: 40rpx;' placeholder="请输入姓名" value="{{name}}" bindinput="bindKeyInputName" />
-  <input style='margin-top: 40rpx;' placeholder="请输入年龄" value="{{age}}" bindinput="bindKeyInputAge" />
+  <input style='margin-top: 40rpx;' placeholder="请输入插入记录的姓名" value="{{addName}}" bindinput="bindAddName" />
+  <!-- value="{{addName}}"：获取js文件中变量初始值：data: { addName: '初始值' }  -->
+  <input style='margin-top: 40rpx;' placeholder="请输入插入记录的年龄" bindinput="bindAddAge" />
   <button style='margin-top: 40rpx;' bindtap='insertData'>
     插入数据
   </button>
 
 <!-- 查询 -->
-  <input style='margin-top: 40rpx;' placeholder="请输入记录ID" value="{{recordId}}" bindinput="bindKeyInputId" />
+  <input style='margin-top: 40rpx;' placeholder="请输入查询记录的ID" bindinput="bindQueryId" />
+  <text style='margin-top: 40rpx;'>
+     姓名：{{queryName}} 
+  </text>
+  <text style='margin-top: 80rpx;'>
+     年龄：{{queryAge}} 
+  </text>
   <button style='margin-top: 40rpx;' bindtap='queryData'>
     查询数据
   </button>
-  <text style='margin-top: 40rpx;'>
-     姓名：{{nameResult}} 
-  </text>
-  <text style='margin-top: 80rpx;'>
-     年龄：{{ageResult}} 
-  </text>
 
 <!-- 修改 -->
-  <input style='margin-top: 40rpx;' placeholder="请输入记录ID" value="{{updateRecordId}}" bindinput="bindKeyUpdateId" />
+  <input style='margin-top: 40rpx;' placeholder="请输入修改记录的ID" bindinput="bindUpdateId" />
+  <input style='margin-top: 40rpx;' placeholder="请输入修改的姓名" bindinput="bindUpdateName" />
+  <input style='margin-top: 40rpx;' placeholder="请输入修改的年龄" bindinput="bindUpdateAge" />
   <button style='margin-top: 40rpx;' bindtap='updateData'>
     修改数据
   </button>
-  <input style='margin-top: 40rpx;' placeholder="请输入姓名" value="{{updateName}}" bindinput="bindKeyUpdateName" />
-  <input style='margin-top: 40rpx;' placeholder="请输入年龄" value="{{updateAge}}" bindinput="bindKeyUpdateAge" />
 
 <!-- 删除 -->
-  <input style='margin-top: 40rpx;' placeholder="请输入记录ID" value="{{removeRecordId}}" bindinput="bindKeyRemoveId" />
+  <input style='margin-top: 40rpx;' placeholder="请输入删除记录的ID" bindinput="bindRemoveId" />
   <button style='margin-top: 40rpx;' bindtap='removeData'>
     删除数据
   </button>

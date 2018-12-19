@@ -10,9 +10,10 @@ Page({
   users: undefined,
 
   data: {
-    name: '', age: '', recordId: '', nameResult: '', ageResult: '',
-    updateRecordId: '', updateName: '', updateAge: '',
-    removeRecordId: ''
+    addName: 'initValue', addAge: '', 
+    queryId: '', queryName: '', queryAge: '',
+    updateId: '', updateName: '', updateAge: '',
+    removeId: ''
   },
 
   /**
@@ -47,22 +48,25 @@ Page({
     })
   },
 
-  // 插入数据
+  /**
+   * 插入数据
+   */
   insertData: function () {
     var that = this
-    try {     //  将年龄转换为整数类型值
-      var age = parseInt(that.data.age)     //  如果输入的年龄不是数字，会显示错误对话框，并退出该函数
-      if (isNaN(age)) {        //  显示错误对话框
+    try {     
+      // 将年龄转换为整数类型值，如果输入的年龄不是数字，会显示错误对话框，并退出该函数
+      var age = parseInt(that.data.addAge)     
+      if (isNaN(age)) {        
         wx.showModal({
           title: '错误', content: '请输入正确的年龄', showCancel: false
         })        
         return
       }
-      //  向test数据集添加记录
-      this.users.add({        // data 字段表示需新增的 JSON 数据
+     
+      this.users.add({        
         data: {
-          name: that.data.name, age: age
-        },        //  数据插入成功，调用该函数
+          name: that.data.addName, age: age
+        },       
         success: function (res) {
           console.log(res)
           wx.showModal({
@@ -80,45 +84,52 @@ Page({
 
     }
   }, 
-  // 查询数据
+
+  /**
+   * 查询数据
+   */
   queryData: function () {
     var that = this
-    //  根据记录ID搜索数据集  
-    this.users.doc(this.data.recordId).get({      // 找到记录集调用
+    this.users.doc(this.data.queryId).get({      // 找到记录集调用
       success: function (res) {
-        //  将查询结果显示在页面上  
-        that.setData({
-          nameResult: res.data.name, ageResult: res.data.age
-        })
-
-      },     //  未查到数据时调用
+        
+        if (res.data.name != undefined && res.data.name != null) {
+          that.setData({
+            queryName: res.data.name
+          })
+        }
+        if (res.data.age != undefined && res.data.age != null){
+          that.setData({
+            queryAge: res.data.age
+          })
+        }
+        // that.setData({
+        //   queryName: res.data.name, queryAge: res.data.age
+        // })
+      },     
       fail: function (res) {
         wx.showModal({
           title: '错误', content: '没有找到记录', showCancel: false
         })
       }
     })
-
   }, 
 
-  // 修改数据
+  /**
+   * 修改数据
+   */
   updateData: function () {
     var that = this
-
-    var name = that.data.updateName
-    var age = that.data.updateAge
-    //  根据记录ID搜索数据集  
-    this.users.doc(this.data.updateRecordId).update({      // 找到记录集调用
+    this.users.doc(this.data.updateId).update({     
      
       data: {
         name: that.data.updateName,
         age: that.data.updateAge
       },
      
-      success: function (res) {
-        //  将查询结果显示在页面上  
-        that.setData({
-          nameResult: res.data.name, ageResult: res.data.age
+      success: function (res) {  
+        wx.showModal({
+          title: '成功', content: '成功修改记录', showCancel: false
         })
 
       },     
@@ -128,18 +139,18 @@ Page({
         })
       }
     })
-
   }, 
 
-  // 删除数据
+  /**
+   * 删除数据
+   */
   removeData: function () {
     var that = this
-
-    //  根据记录ID搜索数据集  
-    this.users.doc(this.data.removeRecordId).remove({      // 找到记录集调用
+    this.users.doc(this.data.removeId).remove({      
       success: function (res) {
-        console.log(res)
-        that.getUserMsg()
+        wx.showModal({
+          title: '成功', content: '成功删除记录', showCancel: false
+        })
       },
       fail: function (res) {
         wx.showModal({
@@ -147,45 +158,46 @@ Page({
         })
       }
     })
-
   }, 
   
-  //  下面的函数用于当更新input组件中的值时同时更新对应变量的值
-  bindKeyInputName: function (e) {
+  /**
+   * 界面 ---> 变量
+   */
+  bindAddName: function (e) {
     this.setData({
-      name: e.detail.value
+      addName: e.detail.value
     })
   }, 
-  bindKeyInputAge: function (e) {
+  bindAddAge: function (e) {
     this.setData({
-      age: e.detail.value
+      addAge: e.detail.value
     })
   }, 
-  bindKeyInputId: function (e) {
+  bindQueryId: function (e) {
     this.setData({
-      recordId: e.detail.value
+      queryId: e.detail.value
     })
   },
 
-  bindKeyUpdateName: function (e) {
+  bindUpdateName: function (e) {
     this.setData({
       updateName: e.detail.value
     })
   },
-  bindKeyUpdateAge: function (e) {
+  bindUpdateAge: function (e) {
     this.setData({
       updateAge: e.detail.value
     })
   },
-  bindKeyUpdateId: function (e) {
+  bindUpdateId: function (e) {
     this.setData({
-      updateRecordId: e.detail.value
+      updateId: e.detail.value
     })
   },
 
-  bindKeyRemoveId: function (e) {
+  bindRemoveId: function (e) {
     this.setData({
-      removeRecordId: e.detail.value
+      removeId: e.detail.value
     })
   },
 
