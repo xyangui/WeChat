@@ -24,7 +24,6 @@ Page({
   },
 
   onGetOpenid: function () {
-
     var that = this
     // 调用login云函数获取openid
     wx.cloud.callFunction({
@@ -90,15 +89,15 @@ Page({
    */
   queryData: function () {
     var that = this
-    this.users.doc(this.data.queryId).get({      // 找到记录集调用
+    this.users.doc(this.data.queryId).get({      
       success: function (res) {
-        
-        if (res.data.name != undefined && res.data.name != null) {
+        // 判断是否为空
+        if (res.data.name != null) {
           that.setData({
             queryName: res.data.name
           })
         }
-        if (res.data.age != undefined && res.data.age != null){
+        if (res.data.age != null){
           that.setData({
             queryAge: res.data.age
           })
@@ -179,6 +178,11 @@ Page({
     })
   },
 
+  bindUpdateId: function (e) {
+    this.setData({
+      updateId: e.detail.value
+    })
+  },
   bindUpdateName: function (e) {
     this.setData({
       updateName: e.detail.value
@@ -189,12 +193,7 @@ Page({
       updateAge: e.detail.value
     })
   },
-  bindUpdateId: function (e) {
-    this.setData({
-      updateId: e.detail.value
-    })
-  },
-
+  
   bindRemoveId: function (e) {
     this.setData({
       removeId: e.detail.value
