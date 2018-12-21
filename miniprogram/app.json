@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/database/database",
+    "pages/schedule/schedule",
+    "pages/firstPage/firstPage",
     "pages/index/index",
+    "pages/database/database",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",

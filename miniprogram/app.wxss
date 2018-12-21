@@ -5,3 +5,12 @@
   align-items: center;
   box-sizing: border-box;
 } 
+
+.img-button {
+  display: inline-block;
+}
+
+.img-button image {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,5 @@
+<!--miniprogram/pages/firstPage/firstPage.wxml-->
+
+<button style='margin-top: 40rpx;' bindtap='gotoDatabase'>
+    跳转到数据库页面
+</button>
